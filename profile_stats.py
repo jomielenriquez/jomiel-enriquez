@@ -202,7 +202,7 @@ query($login: String!, $cursor: String) {
       pageInfo { hasNextPage endCursor }
       nodes {
         languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
-          edges { size node { name color } }
+          edges { size node { name } }
         }
       }
     }
@@ -210,14 +210,11 @@ query($login: String!, $cursor: String) {
 }
 """
 
-LANG_SLOTS = 6
-BAR_WIDTH_CHARS = 20
-BAR_TRACK_COLOR = "#30363d"
-DEFAULT_LANG_COLOR = "#8b949e"
+LANGUAGE_LIMIT = 6
 
 
-def get_top_languages(token, login, limit=LANG_SLOTS):
-    sizes, colors, cursor = {}, {}, None
+def get_top_languages(token, login, limit=LANGUAGE_LIMIT):
+    sizes, cursor = {}, None
     while True:
         data = run_query(token, LANGUAGE_QUERY, {"login": login, "cursor": cursor})
         page = data["user"]["repositories"]
@@ -225,64 +222,50 @@ def get_top_languages(token, login, limit=LANG_SLOTS):
             for edge in node["languages"]["edges"]:
                 name = edge["node"]["name"]
                 sizes[name] = sizes.get(name, 0) + edge["size"]
-                colors[name] = edge["node"]["color"] or DEFAULT_LANG_COLOR
         if not page["pageInfo"]["hasNextPage"]:
             break
         cursor = page["pageInfo"]["endCursor"]
 
-    total = sum(sizes.values())
-    if total == 0:
-        return []
     ranked = sorted(sizes.items(), key=lambda item: item[1], reverse=True)[:limit]
-    return [(name, size / total * 100, colors[name]) for name, size in ranked]
+    return [name for name, _ in ranked]
 
 
-def update_language_bars(path, languages):
-    tree = etree.parse(path)
-    for i in range(1, LANG_SLOTS + 1):
-        nodes = tree.xpath(f'//svg:text[@id="lang{i}_row"]', namespaces=SVG_NS)
-        if not nodes:
-            continue
-        row = nodes[0]
-        row.text = None
-        for child in list(row):
-            row.remove(child)
+STATIC_STACK = ".NET Framework, .NET Core, ASP.NET, Entity Framework, React"
 
-        if i - 1 >= len(languages):
-            continue
-        name, pct, color = languages[i - 1]
-
-        filled = min(BAR_WIDTH_CHARS, max(0, round(pct / 100 * BAR_WIDTH_CHARS)))
-        track = BAR_WIDTH_CHARS - filled
-
-        name_span = etree.SubElement(row, "{http://www.w3.org/2000/svg}tspan")
-        name_span.set("fill", DEFAULT_LANG_COLOR)
-        name_span.text = f"{name:<12.12}"
-
-        if filled:
-            filled_span = etree.SubElement(row, "{http://www.w3.org/2000/svg}tspan")
-            filled_span.set("fill", color)
-            filled_span.text = "█" * filled
-
-        if track:
-            track_span = etree.SubElement(row, "{http://www.w3.org/2000/svg}tspan")
-            track_span.set("fill", BAR_TRACK_COLOR)
-            track_span.text = "░" * track
-
-        pct_span = etree.SubElement(row, "{http://www.w3.org/2000/svg}tspan")
-        pct_span.set("fill", DEFAULT_LANG_COLOR)
-        pct_span.text = f" {pct:4.1f}%"
-
-    tree.write(path, xml_declaration=False, encoding="utf-8")
+# Character column where every row's value ends, so values stay right-aligned
+# with a dot leader of whatever length closes the gap from the label.
+RIGHT_COL = 80
 
 
-def update_svg(path, values):
-    tree = etree.parse(path)
-    for element_id, text in values.items():
-        nodes = tree.xpath(f'//svg:text[@id="{element_id}"]', namespaces=SVG_NS)
-        if nodes:
-            nodes[0].text = text
-    tree.write(path, xml_declaration=False, encoding="utf-8")
+def render_row(tree, row_id, label, value):
+    """value is either a plain string, or a list of (text, css_class) tuples
+    for rows that need multiple colors (e.g. Lines of Code)."""
+    nodes = tree.xpath(f'//svg:text[@id="{row_id}"]', namespaces=SVG_NS)
+    if not nodes:
+        return
+    row = nodes[0]
+    row.text = None
+    for child in list(row):
+        row.remove(child)
+
+    parts = [(value, "value")] if isinstance(value, str) else value
+    value_len = sum(len(text) for text, _ in parts)
+
+    label_part = f". {label}:"
+    dots = max(3, RIGHT_COL - len(label_part) - value_len - 2)
+
+    label_span = etree.SubElement(row, "{http://www.w3.org/2000/svg}tspan")
+    label_span.set("class", "label")
+    label_span.text = label_part
+
+    dots_span = etree.SubElement(row, "{http://www.w3.org/2000/svg}tspan")
+    dots_span.set("class", "dots")
+    dots_span.text = ("." * dots) + " "
+
+    for text, css_class in parts:
+        span = etree.SubElement(row, "{http://www.w3.org/2000/svg}tspan")
+        span.set("class", css_class)
+        span.text = text
 
 
 def main():
@@ -295,18 +278,26 @@ def main():
     commits, additions, deletions = compute_loc_and_commits(token, login, user_id, repos)
     languages = get_top_languages(token, login)
 
-    values = {
-        "age_data": format_age(created_at),
-        "repo_data": f"{repo_count:,}",
-        "commit_data": f"{commits:,}",
-        "loc_data": f"{additions:,}++, {deletions:,}--",
-        "star_data": f"{star_total:,}",
-        "follower_data": f"{followers:,}",
-    }
+    rows = [
+        ("row_age", "Uptime", format_age(created_at)),
+        ("row_repo", "Repositories", f"{repo_count:,}"),
+        ("row_commit", "Commits", f"{commits:,}"),
+        ("row_loc", "Lines of Code", [
+            (f"{additions:,}++", "loc-add"),
+            (", ", "value"),
+            (f"{deletions:,}--", "loc-del"),
+        ]),
+        ("row_star", "Stars Earned", f"{star_total:,}"),
+        ("row_follower", "Followers", f"{followers:,}"),
+        ("row_languages", "Languages", ", ".join(languages) if languages else "n/a"),
+        ("row_stack", "Stack", STATIC_STACK),
+    ]
 
     for svg_file in SVG_FILES:
-        update_svg(svg_file, values)
-        update_language_bars(svg_file, languages)
+        tree = etree.parse(svg_file)
+        for row_id, label, value in rows:
+            render_row(tree, row_id, label, value)
+        tree.write(svg_file, xml_declaration=False, encoding="utf-8")
 
 
 if __name__ == "__main__":
