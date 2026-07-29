@@ -201,7 +201,7 @@ query($login: String!, $cursor: String) {
     repositories(first: 100, after: $cursor, ownerAffiliations: [OWNER], isFork: false) {
       pageInfo { hasNextPage endCursor }
       nodes {
-        languages(first: 10, orderBy: { field: SIZE, order: DESC }) {
+        languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name color } }
         }
       }
