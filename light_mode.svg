@@ -60,8 +60,8 @@
 
   <text id="row_age" class="row" x="250" y="76"><tspan class="label">. Uptime:</tspan><tspan class="dots">............................................................. </tspan><tspan class="value">5y 6m 8d</tspan></text>
   <text id="row_repo" class="row" x="250" y="102"><tspan class="label">. Repositories:</tspan><tspan class="dots">............................................................ </tspan><tspan class="value">113</tspan></text>
-  <text id="row_commit" class="row" x="250" y="128"><tspan class="label">. Commits:</tspan><tspan class="dots">............................................................... </tspan><tspan class="value">2,442</tspan></text>
-  <text id="row_loc" class="row" x="250" y="154"><tspan class="label">. Lines of Code:</tspan><tspan class="dots">........................................ </tspan><tspan class="loc-add">6,786,140++</tspan><tspan class="value">, </tspan><tspan class="loc-del">815,800--</tspan></text>
+  <text id="row_commit" class="row" x="250" y="128"><tspan class="label">. Commits:</tspan><tspan class="dots">............................................................... </tspan><tspan class="value">2,444</tspan></text>
+  <text id="row_loc" class="row" x="250" y="154"><tspan class="label">. Lines of Code:</tspan><tspan class="dots">........................................ </tspan><tspan class="loc-add">6,786,155++</tspan><tspan class="value">, </tspan><tspan class="loc-del">815,805--</tspan></text>
   <text id="row_star" class="row" x="250" y="180"><tspan class="label">. Stars Earned:</tspan><tspan class="dots">.............................................................. </tspan><tspan class="value">3</tspan></text>
   <text id="row_follower" class="row" x="250" y="206"><tspan class="label">. Followers:</tspan><tspan class="dots">................................................................. </tspan><tspan class="value">7</tspan></text>
   <text id="row_languages" class="row" x="250" y="248"><tspan class="label">. Languages:</tspan><tspan class="dots">................... </tspan><tspan class="value">CSS, JavaScript, HTML, C#, TypeScript, Makefile</tspan></text>
