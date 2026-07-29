@@ -1,4 +1,4 @@
-<svg width="1000" height="350" viewBox="0 0 1000 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="descId">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="350" viewBox="0 0 1000 350" role="img" aria-labelledby="descId">
   <title id="titleId">jomielenriquez's GitHub Stats</title>
   <desc id="descId">GitHub activity statistics for jomielenriquez, rendered as a terminal window</desc>
   <style>
@@ -15,13 +15,13 @@
     .loc-del { fill: #ff7b72; }
   </style>
 
-  <rect class="window" x="0.5" y="0.5" rx="8" width="999" height="349" />
-  <path class="titlebar" d="M0.5,8.5 a8,8 0 0 1 8,-8 h983 a8,8 0 0 1 8,8 v28 h-999 z" />
-  <circle cx="20" cy="18" r="6" fill="#ff5f56" />
-  <circle cx="40" cy="18" r="6" fill="#ffbd2e" />
-  <circle cx="60" cy="18" r="6" fill="#27c93f" />
+  <rect class="window" x="0.5" y="0.5" rx="8" width="999" height="349"/>
+  <path class="titlebar" d="M0.5,8.5 a8,8 0 0 1 8,-8 h983 a8,8 0 0 1 8,8 v28 h-999 z"/>
+  <circle cx="20" cy="18" r="6" fill="#ff5f56"/>
+  <circle cx="40" cy="18" r="6" fill="#ffbd2e"/>
+  <circle cx="60" cy="18" r="6" fill="#27c93f"/>
   <text class="titletext" x="500.0" y="22" text-anchor="middle">jomielenriquez@github:~/profile.stats</text>
-  <line class="divider" x1="0" y1="36" x2="1000" y2="36" />
+  <line class="divider" x1="0" y1="36" x2="1000" y2="36"/>
 
   <g class="ascii" transform="translate(24, 50)">
       <text y="8.0"><tspan x="0.0" fill="#a05e43">----=======================</tspan><tspan x="129.6" fill="#aa6549">=</tspan><tspan x="134.4" fill="#a05e43">===============</tspan></text>
@@ -56,14 +56,14 @@
       <text y="274.8"><tspan x="0.0" fill="#fdf1f7">@</tspan><tspan x="4.8" fill="#f9e7ed">@@</tspan><tspan x="14.4" fill="#fdf1f7">@</tspan><tspan x="19.2" fill="#fef4fa">@@</tspan><tspan x="28.8" fill="#f3c2b3">%#%</tspan><tspan x="43.2" fill="#f9e7ed">%%</tspan><tspan x="52.8" fill="#fdf1f7">@@@@@</tspan><tspan x="76.8" fill="#fef4fa">@</tspan><tspan x="81.6" fill="#fefafb">@</tspan><tspan x="86.4" fill="#fdf9fa">@@</tspan><tspan x="96.0" fill="#fdf1f7">@</tspan><tspan x="100.8" fill="#fdfafb">@@</tspan><tspan x="110.4" fill="#fdf9fa">@@</tspan><tspan x="120.0" fill="#fefafb">@@</tspan><tspan x="129.6" fill="#fdf9fa">@</tspan><tspan x="134.4" fill="#fefafb">@</tspan><tspan x="139.2" fill="#fdf9fa">@@@@@</tspan><tspan x="163.2" fill="#fdf7fb">@@</tspan><tspan x="172.8" fill="#fef4fa">@</tspan><tspan x="177.6" fill="#fdf1f7">@@</tspan><tspan x="187.2" fill="#fef4fa">@@@@</tspan></text>
   </g>
 
-  <line class="divider" x1="232" y1="50" x2="232" y2="326" />
+  <line class="divider" x1="232" y1="50" x2="232" y2="326"/>
 
-  <text id="row_age" class="row" x="250" y="76"></text>
-  <text id="row_repo" class="row" x="250" y="102"></text>
-  <text id="row_commit" class="row" x="250" y="128"></text>
-  <text id="row_loc" class="row" x="250" y="154"></text>
-  <text id="row_star" class="row" x="250" y="180"></text>
-  <text id="row_follower" class="row" x="250" y="206"></text>
-  <text id="row_languages" class="row" x="250" y="248"></text>
-  <text id="row_stack" class="row" x="250" y="290"></text>
+  <text id="row_age" class="row" x="250" y="76"><tspan class="label">. Uptime:</tspan><tspan class="dots">............................................................. </tspan><tspan class="value">5y 6m 8d</tspan></text>
+  <text id="row_repo" class="row" x="250" y="102"><tspan class="label">. Repositories:</tspan><tspan class="dots">............................................................ </tspan><tspan class="value">113</tspan></text>
+  <text id="row_commit" class="row" x="250" y="128"><tspan class="label">. Commits:</tspan><tspan class="dots">............................................................... </tspan><tspan class="value">2,441</tspan></text>
+  <text id="row_loc" class="row" x="250" y="154"><tspan class="label">. Lines of Code:</tspan><tspan class="dots">........................................ </tspan><tspan class="loc-add">6,786,130++</tspan><tspan class="value">, </tspan><tspan class="loc-del">815,790--</tspan></text>
+  <text id="row_star" class="row" x="250" y="180"><tspan class="label">. Stars Earned:</tspan><tspan class="dots">.............................................................. </tspan><tspan class="value">3</tspan></text>
+  <text id="row_follower" class="row" x="250" y="206"><tspan class="label">. Followers:</tspan><tspan class="dots">................................................................. </tspan><tspan class="value">7</tspan></text>
+  <text id="row_languages" class="row" x="250" y="248"><tspan class="label">. Languages:</tspan><tspan class="dots">................... </tspan><tspan class="value">CSS, JavaScript, HTML, C#, TypeScript, Makefile</tspan></text>
+  <text id="row_stack" class="row" x="250" y="290"><tspan class="label">. Stack:</tspan><tspan class="dots">........... </tspan><tspan class="value">.NET Framework, .NET Core, ASP.NET, Entity Framework, React</tspan></text>
 </svg>

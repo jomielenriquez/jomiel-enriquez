@@ -95,7 +95,7 @@ jomielenriquez/freeCodeCampProjects 36 134811 8482
 jomielenriquez/frontend-assessment-grid-component 2 7300 8
 jomielenriquez/github-slideshow 0 0 0
 jomielenriquez/great-valley-home-health 29 18470 960
-jomielenriquez/jomiel-enriquez 3 538 4
+jomielenriquez/jomiel-enriquez 5 725 222
 jomielenriquez/jomielenriquez 7 17 12
 jomielenriquez/jomielenriquez.github.io 206 387454 79395
 jomielenriquez/kiosk 29 4411 742
