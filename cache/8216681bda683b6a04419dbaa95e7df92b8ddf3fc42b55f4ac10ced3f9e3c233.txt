@@ -105,7 +105,7 @@ jomielenriquez/linuxserver 20 571 44
 jomielenriquez/micro-code 10 1869 134
 jomielenriquez/mvc-bootstrap-training 97 1319 223
 jomielenriquez/mygrade 5 14063 300
-jomielenriquez/practice-dotnet-react 3 3799 71
+jomielenriquez/practice-dotnet-react 8 6212 245
 jomielenriquez/quote-my-pc 3 34703 41
 jomielenriquez/skirt-calculator 3 30519 0
 jomielenriquez/sub-zero 79 38757 6877
