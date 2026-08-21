@@ -58,7 +58,7 @@
 
   <line class="divider" x1="232" y1="50" x2="232" y2="326"/>
 
-  <text id="row_age" class="row" x="250" y="76"><tspan class="label">. Uptime:</tspan><tspan class="dots">............................................................ </tspan><tspan class="value">5y 6m 30d</tspan></text>
+  <text id="row_age" class="row" x="250" y="76"><tspan class="label">. Uptime:</tspan><tspan class="dots">............................................................. </tspan><tspan class="value">5y 7m 0d</tspan></text>
   <text id="row_repo" class="row" x="250" y="102"><tspan class="label">. Repositories:</tspan><tspan class="dots">............................................................ </tspan><tspan class="value">114</tspan></text>
   <text id="row_commit" class="row" x="250" y="128"><tspan class="label">. Commits:</tspan><tspan class="dots">............................................................... </tspan><tspan class="value">2,452</tspan></text>
   <text id="row_loc" class="row" x="250" y="154"><tspan class="label">. Lines of Code:</tspan><tspan class="dots">........................................ </tspan><tspan class="loc-add">6,792,367++</tspan><tspan class="value">, </tspan><tspan class="loc-del">816,050--</tspan></text>
