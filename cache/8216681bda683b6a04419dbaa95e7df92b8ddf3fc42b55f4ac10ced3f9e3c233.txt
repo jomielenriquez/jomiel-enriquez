@@ -90,6 +90,7 @@ jomielenriquez/cdl-website 3 20252 68
 jomielenriquez/classroom-monitoring-system 58 83275 1435
 jomielenriquez/customer-api 45 2497 634
 jomielenriquez/dataapi 6 914 99
+jomielenriquez/expense-tracker-web 0 0 0
 jomielenriquez/free-code-camp 5 307 169
 jomielenriquez/freeCodeCampProjects 36 134811 8482
 jomielenriquez/frontend-assessment-grid-component 2 7300 8
